@@ -1,14 +1,26 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import render
+from datetime import datetime
 
-# widok podstawowy
+
+
 def hello(request):
     return HttpResponse("Witaj w Django!")
 
-# widok dynamiczny z imieniem
+
 def hello_name(request, name):
     return HttpResponse(f"Witaj, {name}!")
 
-# widok ze szablonem
+
 def hello_template(request, name):
     return render(request, "witaj/hello.html", {"name": name})
+
+
+def current_time(request):
+    now = datetime.now()
+
+    formatted_time = now.strftime("Dzisiaj jest %d.%m.%Y, godzina: %H:%M")
+
+    return render(request, "witaj/time.html", {"time": formatted_time})
+
